@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GLView.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    float scaleFactor = [[UIScreen mainScreen] scale];
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    //bounds = CGRectMake(-bounds.size.width*scaleFactor/2, 0, bounds.size.width*scaleFactor, bounds.size.height*scaleFactor);
+    GLView* glView = [[GLView alloc] initWithFrame:bounds];
+    glView.layer.contentsScale = scaleFactor;
+    [glView setBackgroundColor:[UIColor cyanColor]];
+    [self.view addSubview: glView];
 }
 
 - (void)didReceiveMemoryWarning {
